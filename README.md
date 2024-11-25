@@ -11,31 +11,31 @@ projects as a reference for your own learning.
 
 ### 1. Tenzies
 
-    * **Description:** A fun dice game where the objective is to match all dice to the same number.
-    * **Technologies used:** React, JS, HTML5, CSS
-    * **Status:** progressing
+    + **Description:** A fun dice game where the objective is to match all dice to the same number.
+    + **Technologies used:** React, JS, HTML5, CSS
+    + **Status:** progressing
 
 ## How to use
 
-\*\*1. Clone the Repository
+**1. Clone the Repository**
 
 ```
 git clone https://github.com/your-username/Scrimba.git
 ```
 
-\*\*2. Navigate to a Project directory
+**2. Navigate to a Project directory**
 
 ```
 cd Scrimba/project-directory
 ```
 
-\*\*3. Instal dependencies
+**3. Instal dependencies**
 
 ```
 npm install
 ```
 
-\*\*4. Run the Project
+**4. Run the Project**
 
 ```
 npm start
