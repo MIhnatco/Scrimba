@@ -58,11 +58,11 @@ describe("App component", () => {
       render(<App />);
 
       //Find all dice buttons (without Roll button)
-      const diceElemements = screen.getAllByRole("button").slice(0, 10);
+      const diceElements = screen.getAllByRole("button").slice(0, 10);
 
-      expect(diceElemements.length).toBe(10);
+      expect(diceElements.length).toBe(10);
 
-      diceElemements.forEach((die) => {
+      diceElements.forEach((die) => {
         const value = Number(die.textContent);
         expect(value).toBeGreaterThanOrEqual(1);
         expect(value).toBeLessThanOrEqual(6);
