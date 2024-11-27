@@ -1,36 +1,37 @@
 import React from "react";
 import "./App.css";
 
+import { nanoid } from "nanoid";
+
 import Die from "./components/Die";
-
 /**
- * Challenge:
+ * Challenge: Update the array of numbers in state to be
+ * an array of objects instead. Each object should look like:
+ * { value: <random number>, isHeld: false }
  *
- * Write a function (generateAllNewDice) that returns an array
- * of 10 random numbers between 1-6 inclusive.
- *
- * Log the array of numbers to the console for now
+ * Making this change will break parts of our code, so make
+ * sure to update things so we're back to a working state
  */
 
 /**
- * Challenge:
+ * Challenge: Add conditional styling to the Die component
+ * so that if it's held (isHeld === true), its background color
+ * changes to a light green (#59E391)
  *
- * Create state to hold our array of numbers. (Initialize
- * the state by calling our `generateAllNewDice` function so it
- * loads all new dice as soon as the app loads)
- *
- * Map over the state numbers array to generate our array
- * of Die components and render those in place of our
- * manually-written 10 Die elements.
+ * Remember: currently the Die component has no way of knowing
+ * if it's "held" or not.
  */
 
 /**
- * Challenge: Create a `Roll Dice` button that will re-roll
- * all 10 dice
+ * Challenge: Create a function `hold` that takes
+ * `id` as a parameter. For now, just have the function
+ * console.log(id).
  *
- * Clicking the button should generate a new array of numbers
- * and set the `dice` state to that new array (thus re-rendering
- * the array to the page)
+ * Then, figure out how to pass that function down to each
+ * instance of the Die component so when each one is clicked,
+ * it logs its own unique ID property. (Hint: there's more
+ * than one way to make that work, so just choose whichever
+ * you want)
  */
 
 /**
@@ -40,7 +41,6 @@ import Die from "./components/Die";
 
 function App() {
   const [dice, setDice] = React.useState(generateAllNewDice());
-
   /**
    * Generates a random number between 1 - 6 inclusive
    * @returns {number[]}
@@ -55,15 +55,19 @@ function App() {
       let nmb = Math.floor(Math.random() * 6 + 1);
 
       if (nmb >= 1 && nmb <= 6) {
-        diceNumbers.push(nmb);
+        diceNumbers.push({ value: nmb, isHeld: false, id: nanoid() });
       }
     }
     return diceNumbers;
   }
 
   //random dice
-  const diceElemements = dice.map((tenzie, idx) => (
-    <Die value={tenzie} key={idx} />
+  const diceElemements = dice.map((tenzie) => (
+    <Die
+      tenzie={tenzie}
+      key={tenzie.id}
+      toggle={() => holdBackground(tenzie.id)}
+    />
   ));
 
   //roll new dice
@@ -71,11 +75,29 @@ function App() {
     setDice(generateAllNewDice());
   }
 
+  /**
+   * Challenge: Update the `hold` function to flip
+   * the `isHeld` property on the object in the array
+   * that was clicked, based on the `id` prop passed
+   * into the function.
+   *
+   * Hint: as usual, there's more than one way to
+   * accomplish this.
+   */
+  function holdBackground(id) {
+    setDice((prevState) =>
+      prevState.map((tenzie) =>
+        tenzie.id === id ? { ...tenzie, isHeld: !tenzie.isHeld } : tenzie
+      )
+    );
+  }
+
   return (
     <main>
       <section className="dice-container" aria-label="dice-container">
         {diceElemements}
       </section>
+
       <button className="roll-dice" onClick={rollDice}>
         Roll
       </button>
