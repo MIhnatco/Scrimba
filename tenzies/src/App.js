@@ -4,35 +4,6 @@ import "./App.css";
 import { nanoid } from "nanoid";
 
 import Die from "./components/Die";
-/**
- * Challenge: Update the array of numbers in state to be
- * an array of objects instead. Each object should look like:
- * { value: <random number>, isHeld: false }
- *
- * Making this change will break parts of our code, so make
- * sure to update things so we're back to a working state
- */
-
-/**
- * Challenge: Add conditional styling to the Die component
- * so that if it's held (isHeld === true), its background color
- * changes to a light green (#59E391)
- *
- * Remember: currently the Die component has no way of knowing
- * if it's "held" or not.
- */
-
-/**
- * Challenge: Create a function `hold` that takes
- * `id` as a parameter. For now, just have the function
- * console.log(id).
- *
- * Then, figure out how to pass that function down to each
- * instance of the Die component so when each one is clicked,
- * it logs its own unique ID property. (Hint: there's more
- * than one way to make that work, so just choose whichever
- * you want)
- */
 
 /**
  *
@@ -41,6 +12,7 @@ import Die from "./components/Die";
 
 function App() {
   const [dice, setDice] = React.useState(generateAllNewDice());
+
   /**
    * Generates a random number between 1 - 6 inclusive
    * @returns {number[]}
@@ -70,20 +42,27 @@ function App() {
     />
   ));
 
+  /**
+   * Challenge: Update the `rollDice` function to not just roll
+   * all new dice, but instead to look through the existing dice
+   * to NOT role any that are being `held`.
+   *
+   * Hint: this will look relatively similiar to the `hold`
+   * function below. When we're "rolling" a die, we're really
+   * just updating the `value` property of the die object.
+   */
   //roll new dice
   function rollDice() {
-    setDice(generateAllNewDice());
+    setDice((prevState) =>
+      prevState.map((tenzie) =>
+        tenzie.isHeld === false
+          ? { ...tenzie, value: Math.floor(Math.random() * 6 + 1) }
+          : tenzie
+      )
+    );
   }
 
-  /**
-   * Challenge: Update the `hold` function to flip
-   * the `isHeld` property on the object in the array
-   * that was clicked, based on the `id` prop passed
-   * into the function.
-   *
-   * Hint: as usual, there's more than one way to
-   * accomplish this.
-   */
+  //change background on click
   function holdBackground(id) {
     setDice((prevState) =>
       prevState.map((tenzie) =>
@@ -94,6 +73,11 @@ function App() {
 
   return (
     <main>
+      <h1 className="title">Tenzies</h1>
+      <p className="instructions">
+        Roll until all dice are the same. Click each die to freeze it at its
+        current value between rolls.
+      </p>
       <section className="dice-container" aria-label="dice-container">
         {diceElemements}
       </section>
