@@ -15,26 +15,8 @@ function App() {
   const [dice, setDice] = React.useState(() => generateAllNewDice());
 
   /**
-   * Challenge:
-   * Log "Game won!" to the console only if the 2 winning
-   * conditions are met.
-   *
-   * 1. all the dice are being held, and
-   * 2. all the dice have the same value
-   *
-   * For now, no need to even save a variable!
-   */
-
-  /**
-   * Challenge part 2:
-   * 1. Create a new `gameWon` variable.
-   * 2. If `gameWon` is true, change the button text to
-   *    "New Game" instead of "Roll"
-   */
-
-  /**
-   * Challenge:
-   * Make the confetti drop when the game is won! 🎉🎊
+   * Challenge: Allow the user to play a new game when the
+   * button is clicked
    */
 
   let gameWon =
@@ -72,13 +54,17 @@ function App() {
 
   //roll new dice
   function rollDice() {
-    setDice((prevState) =>
-      prevState.map((tenzie) =>
-        tenzie.isHeld === false
-          ? { ...tenzie, value: Math.floor(Math.random() * 6 + 1) }
-          : tenzie
-      )
-    );
+    if (!gameWon) {
+      setDice((prevState) =>
+        prevState.map((tenzie) =>
+          tenzie.isHeld === false
+            ? { ...tenzie, value: Math.floor(Math.random() * 6 + 1) }
+            : tenzie
+        )
+      );
+    } else {
+      setDice(generateAllNewDice());
+    }
   }
 
   //change background on click
