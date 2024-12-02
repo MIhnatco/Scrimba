@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./App.css";
 import { nanoid } from "nanoid";
 
 import Confetti from "react-confetti";
 
 import Die from "./components/Die";
+
+
+   
+/**
+ * Challenge:
+ * Make it so when the game is over, the "New Game" button
+ * automatically receives keyboard focus so keyboard users
+ * can easily trigger that button without having to tab
+ * through all the dice first
+ */
+
 
 /**
  *
@@ -14,14 +25,18 @@ import Die from "./components/Die";
 function App() {
   const [dice, setDice] = React.useState(() => generateAllNewDice());
 
-  /**
-   * Challenge: Allow the user to play a new game when the
-   * button is clicked
-   */
+  const buttonRef = useRef(null);
 
   let gameWon =
     dice.every((die) => die.isHeld) &&
     dice.every((die) => die.value === dice[0].value);
+
+  //adding focus to Roll button at the end of the game
+  useEffect(() => {
+    if (gameWon) {
+      buttonRef.current.focus();
+    }
+  }, [gameWon]);
 
   /**
    * Generates a random number between 1 - 6 inclusive
@@ -34,10 +49,10 @@ function App() {
     //generating and storing the random numbers
     for (let i = 0; i < 10; i++) {
       //generating a random number
-      let nmb = Math.floor(Math.random() * 6 + 1);
+      let randomNumber = Math.floor(Math.random() * 6 + 1);
 
-      if (nmb >= 1 && nmb <= 6) {
-        diceNumbers.push({ value: nmb, isHeld: false, id: nanoid() });
+      if (randomNumber >= 1 && randomNumber <= 6) {
+        diceNumbers.push({ value: randomNumber, isHeld: false, id: nanoid() });
       }
     }
     return diceNumbers;
@@ -78,6 +93,13 @@ function App() {
 
   return (
     <main>
+      {/*Accessibility */}
+      <div aria-live="polite" className="sr-only">
+        {gameWon && (
+          <p>Congratulations! You won! Press "New Game" to start again.</p>
+        )}
+      </div>
+
       <h1 className="title">Tenzies</h1>
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
@@ -87,7 +109,7 @@ function App() {
         {diceElemements}
       </section>
 
-      <button className="roll-dice" onClick={rollDice}>
+      <button ref={buttonRef} className="roll-dice" onClick={rollDice}>
         {gameWon ? "New Game" : "Roll"}
       </button>
 
