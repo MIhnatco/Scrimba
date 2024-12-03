@@ -6,17 +6,10 @@ import Confetti from "react-confetti";
 
 import Die from "./components/Die";
 
-
-   
 /**
  * Challenge:
- * Make it so when the game is over, the "New Game" button
- * automatically receives keyboard focus so keyboard users
- * can easily trigger that button without having to tab
- * through all the dice first
+ * Tracking the Number of Rolls in Tenzies
  */
-
-
 /**
  *
  * @returns {JSX.Element}
@@ -24,6 +17,8 @@ import Die from "./components/Die";
 
 function App() {
   const [dice, setDice] = React.useState(() => generateAllNewDice());
+
+  const [rollCount, setRollCount] = React.useState(0);
 
   const buttonRef = useRef(null);
 
@@ -77,8 +72,12 @@ function App() {
             : tenzie
         )
       );
+
+      //counting rolls
+      setRollCount((prevCount) => prevCount + 1);
     } else {
       setDice(generateAllNewDice());
+      setRollCount(0);
     }
   }
 
@@ -105,6 +104,12 @@ function App() {
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.
       </p>
+
+      {gameWon ? (
+        <h3 className="roll-won">You won in {rollCount} rolls!</h3>
+      ) : (
+        <h3 className="roll-count">Number of Rolls: {rollCount} </h3>
+      )}
       <section className="dice-container" aria-label="dice-container">
         {diceElemements}
       </section>
