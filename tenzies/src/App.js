@@ -7,18 +7,18 @@ import Confetti from "react-confetti";
 import Die from "./components/Die";
 
 /**
- * Challenge:
- * Tracking the Number of Rolls in Tenzies
- */
-/**
- *
+ * A React a
  * @returns {JSX.Element}
  */
 
 function App() {
-  const [dice, setDice] = React.useState(() => generateAllNewDice());
+  const [adjustDice, setAdjustDice] = React.useState(10);
+
+  const [dice, setDice] = React.useState(() => generateAllNewDice(adjustDice));
 
   const [rollCount, setRollCount] = React.useState(0);
+
+  const [pendingDice, setPendingDice] = React.useState(10);
 
   const buttonRef = useRef(null);
 
@@ -37,12 +37,12 @@ function App() {
    * Generates a random number between 1 - 6 inclusive
    * @returns {number[]}
    */
-  function generateAllNewDice() {
+  function generateAllNewDice(numberOfDice) {
     //array to store 10 random number between 1-6 inclusive
     let diceNumbers = [];
 
     //generating and storing the random numbers
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < numberOfDice; i++) {
       //generating a random number
       let randomNumber = Math.floor(Math.random() * 6 + 1);
 
@@ -76,7 +76,7 @@ function App() {
       //counting rolls
       setRollCount((prevCount) => prevCount + 1);
     } else {
-      setDice(generateAllNewDice());
+      setDice(() => generateAllNewDice(adjustDice));
       setRollCount(0);
     }
   }
@@ -88,6 +88,17 @@ function App() {
         tenzie.id === id ? { ...tenzie, isHeld: !tenzie.isHeld } : tenzie
       )
     );
+  }
+
+  //handle input change
+  function handleNumberOfDice(evt) {
+    const value = Math.max(2, Math.min(10, Number(evt.target.value))); // Clamp value between 2 and 10
+    setPendingDice(value);
+  }
+
+  //set the new number of dice
+  function applyDiceAdjustment() {
+    setAdjustDice(pendingDice); //update dice count
   }
 
   return (
@@ -104,6 +115,18 @@ function App() {
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.
       </p>
+
+      <div className="adjust-dice-container">
+        <label for="numbOfDice">Adjust number of DICE</label>
+        <input
+          type="number"
+          id="numbOfDice"
+          value={pendingDice}
+          onChange={handleNumberOfDice}
+          aria-label="Number of dice to play with"
+        />
+        <button onClick={applyDiceAdjustment}>Set</button>
+      </div>
 
       {gameWon ? (
         <h3 className="roll-won">You won in {rollCount} rolls!</h3>
