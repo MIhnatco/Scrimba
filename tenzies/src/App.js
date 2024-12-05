@@ -116,18 +116,22 @@ function App() {
         current value between rolls.
       </p>
 
-      <div className="adjust-dice-container">
-        <label for="numbOfDice">Adjust number of DICE</label>
-        <input
-          type="number"
-          id="numbOfDice"
-          value={pendingDice}
-          onChange={handleNumberOfDice}
-          aria-label="Number of dice to play with"
-        />
-        <button onClick={applyDiceAdjustment}>Set</button>
-      </div>
+      {/*Adjust the number of dice when you won the game */}
+      {gameWon && (
+        <div className="adjust-dice-container">
+          <label for="numbOfDice">Adjust number of DICE</label>
+          <input
+            type="number"
+            id="numbOfDice"
+            value={pendingDice}
+            onChange={handleNumberOfDice}
+            aria-label="Number of dice to play with"
+          />
+          <button onClick={applyDiceAdjustment}>Set</button>
+        </div>
+      )}
 
+      {/* Count the rolls to win */}
       {gameWon ? (
         <h3 className="roll-won">You won in {rollCount} rolls!</h3>
       ) : (
