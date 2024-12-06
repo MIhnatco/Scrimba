@@ -96,7 +96,7 @@ This project is licensed under the MIT License. Feel free to use and modify the 
 
 ## Acknowledgments 👏
 
-    - [Scrimba](https://scrimba.com/)
-    - [React](https://react.dev/)
-    - [React-Confetti](https://www.npmjs.com/package/nanoid)
-    - [Nanoid](https://www.npmjs.com/package/react-confetti)
+- [Scrimba](https://scrimba.com/)
+- [React](https://react.dev/)
+- [React-Confetti] (https://www.npmjs.com/package/react-confetti)
+- [Nanoid](https://www.npmjs.com/package/nanoid)
