@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+# Tenzies Game 🎲
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Tenzies** is a simple and interactive dice game built with React. The objective of the game is to roll dice untill all dice show the same value. You can freeze a die at its current value to keep it from rolling in subsequent attempts.
 
-## Available Scripts
+This project includes features like visual feedback for held dice (highlighted background), tracking the number of rolls, and a win condition that triggers confetti to celebrate your victory. After winning, the game allows players to adjust the number of dice for a more customized experience.
 
-In the project directory, you can run:
+## Features 🚀
 
-### `npm start`
+- **Interactive Dice Roll:** Roll up to 10 dice with random values between 1 and 6.
+- **Hold Mechanism:** Click on dice to freeze their values to change background color.
+- **Tracking mechanism:** Tracks the number of rolls to achieve victory.
+- **Adjustable Dice count:** After winning, you can adjust the number of dice.
+- **Winning Condition:** The game detects when all dice are held and have the same value.
+- **Confetti Celebration:** A fun animation is displayed when you win.
+- **Responsive Design:** The app works seamlessly across different devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How to Play 🎮
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Click the Roll button to roll all dice
+2. Click on individual dice to freeze them at their current value.
+3. Continue rolling until all dice displaye the same number.
+4. Once you win, celebrate with confetti! Then, you can change (but don't have to) the number of dice and play again.

@@ -9,13 +9,20 @@ import React from "react";
  */
 
 function Die({ tenzie, toggle }) {
+  const buttonStyle = { backgroundColor: tenzie.isHeld ? "#59E391" : "" };
+
+  //event handler function from properties
+  const onToggle = () => toggle();
+
   return (
     <button
-      style={{ backgroundColor: tenzie.isHeld ? "#59E391" : "" }}
+      style={buttonStyle}
       className="grid-item"
-      onClick={toggle}
+      onClick={onToggle}
       aria-pressed={tenzie.isHeld}
-      aria-label={`Die with value ${tenzie.value}, ${tenzie.isHeld ? "held" : "no-held"}`}
+      aria-label={`Die with value ${tenzie.value}, ${
+        tenzie.isHeld ? "held" : "no-held"
+      }`}
     >
       {tenzie.value}
     </button>
