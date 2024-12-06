@@ -31,16 +31,28 @@ This project includes features like visual feedback for held dice (highlighted b
 ## Installation 📦
 
 1. Clone this repository:
-   `git clone https://github.com/your-username/tenzies-game.git`
+
+   ```
+   git clone https://github.com/your-username/tenzies-game.git
+   ```
 
 2. Navigate into the project directory:
-   `cd tenzies-game`
+
+   ```
+   cd tenzies-game
+   ```
 
 3. Install dependencies:
-   `npm install`
+
+   ```
+   npm install
+   ```
 
 4. Start the development server:
-   `npm start`
+
+   ```
+   npm start
+   ```
 
 5. Open the app in your browser at http://localhost:3000.
 
@@ -72,9 +84,10 @@ This project includes features like visual feedback for held dice (highlighted b
 
 ## Screenshots 📸
 
-Game Start
+Game Start <br />
 <img src="./public/images/tenziesIntro.png" alt="Game Start Screenshot">
-Game Won
+
+Game Won<br />
 <img src="./public/images/tenziesWon.png" alt="Game Won Screenshot">
 
 ## License 🛡️
