@@ -1,0 +1,3 @@
+[submodule "meme_generator"]
+	path = meme_generator
+	url = ./meme_generator
