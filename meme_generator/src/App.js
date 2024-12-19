@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 
+import Header from "./components/Header";
 
 /**
  * A React a
@@ -8,14 +9,7 @@ import "./App.css";
  */
 
 function App() {
-  
-
-  return (
-    <main>
-     
-       
-    </main>
-  );
+  return <Header />;
 }
 
 export default App;
