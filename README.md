@@ -13,7 +13,11 @@ projects as a reference for your own learning.
 
 - **Description:** A fun dice game where the objective is to match all dice to the same number.
 - **Technologies used:** React, JS, HTML5, CSS
-- **Status:** progressing
+
+### 2. Meme generator
+
+- **Description:** A React-based Meme Generator app that allows users to create memes by customizing the top and bottom text of an image. Users can also fetch a random meme image from an external API.
+- **Technologies used:** React, JS, HTML5, CSS
 
 ## How to use
 
