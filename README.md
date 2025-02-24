@@ -19,6 +19,10 @@ projects as a reference for your own learning.
 - **Description:** A React-based Meme Generator app that allows users to create memes by customizing the top and bottom text of an image. Users can also fetch a random meme image from an external API.
 - **Technologies used:** React, JS, HTML5, CSS
 
+### 3. Task manager - Render Props pattern
+
+- **Description:** A simple Task Manager application built with React using the Render Props pattern. This application allows users to add, edit, delete, and toggle task completion while persisting tasks in localStorage.
+
 ## How to use
 
 **1. Clone the Repository**
