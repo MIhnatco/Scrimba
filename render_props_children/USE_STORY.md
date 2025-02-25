@@ -24,3 +24,12 @@
         - React component: <TasksList />
         - State: tasks stored in an array
         - Interaction: User types in an input element and clicks "Add task" button to update the list
+
+### Viewing tasks
+
+    As a user, I want to see my list of tasks so that I can see what needs to be done.
+
+    Acceptance criteria:
+        - UI Element: <ul> with <li>
+        - React component: <TasksList />
+        - State: Renders a dynamic list based on stored tasks
