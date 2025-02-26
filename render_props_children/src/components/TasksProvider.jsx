@@ -72,7 +72,16 @@ function TasksProvider({ children }) {
     }
   }, []);
 
-  return <>{children(task, handleTask, tasks, addTask)}</>;
+
+  /**
+   * Removes a task from the list
+   * @param {string} id - The ID of the task to remove
+   */
+  function removeTask(id){
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
+
+  return <>{children(task, handleTask, tasks, addTask, removeTask)}</>;
 }
 
 TasksProvider.propTypes = {

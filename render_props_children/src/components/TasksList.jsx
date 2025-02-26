@@ -14,7 +14,7 @@ import TasksProvider from "./TasksProvider";
 function TasksList() {
   return (
     <TasksProvider>
-      {(task, handleTask, tasks, addTask) => {
+      {(task, handleTask, tasks, addTask, removeTask) => {
         return (
           <main className="md:flex justify-around">
             <aside className="md:w-1/4 flex flex-col items-center border-r-4 p-4"></aside>
@@ -80,6 +80,7 @@ function TasksList() {
                           <IoTrashBin
                             aria-label={`Remove task ${task.text}`}
                             className="text-red-600 hover:text-red-800 hover:cursor-pointer md:text-2xl transition duration-[1s]"
+                            onClick={() => removeTask(task.id)}
                           />
                         </div>
                       </li>
