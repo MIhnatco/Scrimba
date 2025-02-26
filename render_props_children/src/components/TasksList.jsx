@@ -14,7 +14,7 @@ import TasksProvider from "./TasksProvider";
 function TasksList() {
   return (
     <TasksProvider>
-      {(task, handleTask, tasks, addTask, removeTask) => {
+      {(task, handleTask, tasks, addTask, removeTask, toggleTaskCompletion) => {
         return (
           <main className="md:flex justify-around">
             <aside className="md:w-1/4 flex flex-col items-center border-r-4 p-4"></aside>
@@ -47,7 +47,9 @@ function TasksList() {
                     {tasks.map((task) => (
                       <li
                         key={task.id}
-                        className="w-4/5 mx-auto flex justify-between px-4 py-2 my-4 border rounded md:text-xl"
+                        className={`w-4/5 mx-auto flex justify-between px-4 py-2 my-4 border rounded md:text-xl ${
+                          task.done ? "bg-green-500" : ""
+                        } ${task.done ? "text-white" : ""}`}
                         aria-label="Task"
                       >
                         <label
@@ -61,6 +63,7 @@ function TasksList() {
                             className="mr-3"
                             aria-checked={task.done}
                             aria-label="Task completion checkbox"
+                            onChange={() => toggleTaskCompletion(task.id)}
                           />
 
                           <span
