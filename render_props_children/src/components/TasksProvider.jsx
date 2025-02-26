@@ -81,7 +81,16 @@ function TasksProvider({ children }) {
     setTasks(tasks.filter((task) => task.id !== id))
   }
 
-  return <>{children(task, handleTask, tasks, addTask, removeTask)}</>;
+  /**
+   * Toggles completion status of a task
+   * @param {string} id - The ID of the task to toggle
+   */
+
+  function toggleTaskCompletion(id){
+    setTasks((prevTasks) => prevTasks.map((task) => task.id === id ? {...task, done: !task.done} : task))
+  }
+
+  return <>{children(task, handleTask, tasks, addTask, removeTask, toggleTaskCompletion)}</>;
 }
 
 TasksProvider.propTypes = {
