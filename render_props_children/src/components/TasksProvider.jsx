@@ -15,7 +15,6 @@ import PropTypes from "prop-types";
 
 function TasksProvider({ children }) {
   const [tasks, setTasks] = React.useState([]);
-  console.log(tasks);
   const [task, setTask] = React.useState("");
 
   /**
@@ -33,7 +32,6 @@ function TasksProvider({ children }) {
    * @param {Event} event - The event object from the form submission
    * @returns
    */
-
   function addTask(event) {
     event.preventDefault();
 
@@ -48,6 +46,31 @@ function TasksProvider({ children }) {
 
     setTask(""); //Clearing the task input
   }
+
+  /**
+   * Save task to localStorage
+   */
+  React.useEffect(() => {
+    if (tasks.length > 0) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    /**Clear localStorage when no tasks at hand*/
+    if (!tasks.length) {
+      localStorage.clear();
+    }
+  }, [tasks]);
+
+  /**
+   * Load tasks from localStorage on mount
+   */
+  React.useEffect(() => {
+    let storedTasks = localStorage.getItem("tasks");
+
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
 
   return <>{children(task, handleTask, tasks, addTask)}</>;
 }
