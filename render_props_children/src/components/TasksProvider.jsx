@@ -17,6 +17,8 @@ function TasksProvider({ children }) {
   const [tasks, setTasks] = React.useState([]);
   const [task, setTask] = React.useState("");
 
+  const [editinId, setEditingId] = React.useState(null);
+
   /**
    * Handles changes to the task input field
    * @param {Event} event - The event object from the input field
@@ -36,6 +38,20 @@ function TasksProvider({ children }) {
     event.preventDefault();
 
     if (!task.trim()) return;
+
+    //check if the task is being edited
+    if (editinId) {
+      const editingTask = tasks.find((task) => task.id === editinId);
+
+      const updatedTasks = tasks.map((t) =>
+        t.id === editingTask.id ? { ...t, text: task } : t
+      );
+
+      setTasks(updatedTasks);
+      setEditingId(null);
+      setTask("");
+      return;
+    }
 
     const newTask = { text: task, id: new Date().toISOString(), done: false };
 
@@ -72,13 +88,12 @@ function TasksProvider({ children }) {
     }
   }, []);
 
-
   /**
    * Removes a task from the list
    * @param {string} id - The ID of the task to remove
    */
-  function removeTask(id){
-    setTasks(tasks.filter((task) => task.id !== id))
+  function removeTask(id) {
+    setTasks(tasks.filter((task) => task.id !== id));
   }
 
   /**
@@ -86,11 +101,41 @@ function TasksProvider({ children }) {
    * @param {string} id - The ID of the task to toggle
    */
 
-  function toggleTaskCompletion(id){
-    setTasks((prevTasks) => prevTasks.map((task) => task.id === id ? {...task, done: !task.done} : task))
+  function toggleTaskCompletion(id) {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, done: !task.done } : task
+      )
+    );
   }
 
-  return <>{children(task, handleTask, tasks, addTask, removeTask, toggleTaskCompletion)}</>;
+  /**
+   * Sets the task for editing
+   *
+   * @param {string} id - The ID of the task to edit
+   */
+  function handleEditing(id) {
+    const findEditingTask = tasks.find((task) => task.id === id); //find the specific task
+
+    setTask(findEditingTask.text); //set the task input to editing task's text
+
+    setEditingId(id); //set the editing ID to the ID of the task being edited
+  }
+
+  return (
+    <>
+      {children(
+        task,
+        handleTask,
+        tasks,
+        addTask,
+        removeTask,
+        toggleTaskCompletion,
+        editinId,
+        handleEditing
+      )}
+    </>
+  );
 }
 
 TasksProvider.propTypes = {

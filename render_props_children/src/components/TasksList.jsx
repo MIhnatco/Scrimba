@@ -14,7 +14,16 @@ import TasksProvider from "./TasksProvider";
 function TasksList() {
   return (
     <TasksProvider>
-      {(task, handleTask, tasks, addTask, removeTask, toggleTaskCompletion) => {
+      {(
+        task,
+        handleTask,
+        tasks,
+        addTask,
+        removeTask,
+        toggleTaskCompletion,
+        editingId,
+        handleEditing
+      ) => {
         return (
           <main className="md:flex justify-around">
             <aside className="md:w-1/4 flex flex-col items-center border-r-4 p-4"></aside>
@@ -32,9 +41,22 @@ function TasksList() {
                   className="border w-2/4"
                 />
 
-                <button className="ml-4 py-1 px-4 border rounded-md bg-slate-700 text-white transition duration-[1s] hover:bg-slate-600 hover:text-white">
-                  Add task
+                <button
+                  className="ml-4 py-1 px-4 border rounded-md bg-slate-700 text-white transition duration-[1s] hover:bg-slate-600 hover:text-white"
+                  aria-label={editingId ? "Save change" : "Add the task"}
+                >
+                  {editingId ? "Edit" : "Add task"}
                 </button>
+
+                {editingId ? (
+                  <button
+                    className=""
+                    type="button"
+                    aria-label="Cancel editing"
+                  >
+                    Cancel
+                  </button>
+                ) : null}
               </form>
 
               <section className="max-w-2/3 mx-auto py-8">
@@ -75,6 +97,7 @@ function TasksList() {
 
                         <div className="flex gap-3">
                           <FaEdit
+                            onClick={() => handleEditing(task.id)}
                             aria-label={`Edit task ${task.text}`}
                             className={`text-emerald-600 ${
                               task.done ? "text-white" : ""
