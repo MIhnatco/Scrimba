@@ -53,11 +53,11 @@ function TasksProvider({ children }) {
       return;
     }
 
-    const newTask = { text: newTask, id: new Date().toISOString(), done: false };
+    const task = { text: newTask, id: new Date().toISOString(), done: false };
 
     //validate task before adding
-    if (newTask.text && newTask.id) {
-      setTasks((prevTasks) => [newTask, ...prevTasks]);
+    if (task.text && task.id) {
+      setTasks((prevTasks) => [task, ...prevTasks]);
     }
 
     setNewTask(""); //Clearing the task input
