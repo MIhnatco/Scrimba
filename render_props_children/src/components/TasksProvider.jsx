@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
 
 function TasksProvider({ children }) {
   const [tasks, setTasks] = React.useState([]);
-  const [task, setTask] = React.useState("");
+  const [newTask, setNewTask] = React.useState("");
 
   const [editinId, setEditingId] = React.useState(null);
 
@@ -24,8 +24,8 @@ function TasksProvider({ children }) {
    * @param {Event} event - The event object from the input field
    */
 
-  function handleTask(event) {
-    setTask(event.target.value);
+  function handleNewTask(event) {
+    setNewTask(event.target.value);
   }
 
   /**
@@ -37,30 +37,30 @@ function TasksProvider({ children }) {
   function addTask(event) {
     event.preventDefault();
 
-    if (!task.trim()) return;
+    if (!newTask.trim()) return;
 
     //check if the task is being edited
     if (editinId) {
       const editingTask = tasks.find((task) => task.id === editinId);
 
       const updatedTasks = tasks.map((t) =>
-        t.id === editingTask.id ? { ...t, text: task } : t
+        t.id === editingTask.id ? { ...t, text: newTask } : t
       );
 
       setTasks(updatedTasks);
       setEditingId(null);
-      setTask("");
+      setNewTask("");
       return;
     }
 
-    const newTask = { text: task, id: new Date().toISOString(), done: false };
+    const newTask = { text: newTask, id: new Date().toISOString(), done: false };
 
     //validate task before adding
     if (newTask.text && newTask.id) {
       setTasks((prevTasks) => [newTask, ...prevTasks]);
     }
 
-    setTask(""); //Clearing the task input
+    setNewTask(""); //Clearing the task input
   }
 
   /**
@@ -117,7 +117,7 @@ function TasksProvider({ children }) {
   function handleEditing(id) {
     const findEditingTask = tasks.find((task) => task.id === id); //find the specific task
 
-    setTask(findEditingTask.text); //set the task input to editing task's text
+    setNewTask(findEditingTask.text); //set the task input to editing task's text
 
     setEditingId(id); //set the editing ID to the ID of the task being edited
   }
@@ -125,8 +125,8 @@ function TasksProvider({ children }) {
   return (
     <>
       {children(
-        task,
-        handleTask,
+        newTask,
+        handleNewTask,
         tasks,
         addTask,
         removeTask,
