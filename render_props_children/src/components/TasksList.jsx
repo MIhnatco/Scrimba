@@ -15,8 +15,8 @@ function TasksList() {
   return (
     <TasksProvider>
       {(
-        task,
-        handleTask,
+        newTask,
+        handleNewTask,
         tasks,
         addTask,
         removeTask,
@@ -36,8 +36,8 @@ function TasksList() {
               >
                 <input
                   type="text"
-                  value={task}
-                  onChange={handleTask}
+                  value={newTask}
+                  onChange={handleNewTask}
                   className="border w-2/4"
                 />
 
