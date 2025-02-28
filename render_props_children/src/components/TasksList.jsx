@@ -23,7 +23,8 @@ function TasksList() {
         toggleTaskCompletion,
         editingId,
         handleEditing,
-        cancelEditing
+        cancelEditing,
+        inputRef
       ) => {
         return (
           <main className="md:flex justify-around">
@@ -40,6 +41,7 @@ function TasksList() {
                   value={newTask}
                   onChange={handleNewTask}
                   className="border w-2/4"
+                  ref={inputRef}
                 />
 
                 <button

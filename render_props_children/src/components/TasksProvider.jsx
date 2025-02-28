@@ -19,6 +19,8 @@ function TasksProvider({ children }) {
 
   const [editingId, setEditingId] = React.useState(null);
 
+  const inputRef = React.useRef(null);
+
   /**
    * Handles changes to the task input field
    * @param {Event} event - The event object from the input field
@@ -137,6 +139,15 @@ function TasksProvider({ children }) {
     }
   }
 
+  /**
+   * Autofocus the input while editing starts
+   */
+  React.useEffect(() => {
+    if (editingId && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputRef, editingId]);
+
   return (
     <>
       {children(
@@ -147,8 +158,9 @@ function TasksProvider({ children }) {
         removeTask,
         toggleTaskCompletion,
         editingId,
-        handleEditing, 
-        cancelEditing
+        handleEditing,
+        cancelEditing,
+        inputRef
       )}
     </>
   );
