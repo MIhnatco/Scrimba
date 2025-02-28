@@ -17,7 +17,7 @@ function TasksProvider({ children }) {
   const [tasks, setTasks] = React.useState([]);
   const [newTask, setNewTask] = React.useState("");
 
-  const [editinId, setEditingId] = React.useState(null);
+  const [editingId, setEditingId] = React.useState(null);
 
   /**
    * Handles changes to the task input field
@@ -40,8 +40,8 @@ function TasksProvider({ children }) {
     if (!newTask.trim()) return;
 
     //check if the task is being edited
-    if (editinId) {
-      const editingTask = tasks.find((task) => task.id === editinId);
+    if (editingId) {
+      const editingTask = tasks.find((task) => task.id === editingId);
 
       const updatedTasks = tasks.map((t) =>
         t.id === editingTask.id ? { ...t, text: newTask } : t
@@ -122,6 +122,21 @@ function TasksProvider({ children }) {
     setEditingId(id); //set the editing ID to the ID of the task being edited
   }
 
+  /**
+   * Cancel editing the task
+   * @param {Object} event - The event object for canceling editing
+   */
+
+  function cancelEditing(event) {
+    if (event && event.key === "Escape") {
+      setEditingId(null);
+      setNewTask("");
+    } else {
+      setEditingId(null);
+      setNewTask("");
+    }
+  }
+
   return (
     <>
       {children(
@@ -131,8 +146,9 @@ function TasksProvider({ children }) {
         addTask,
         removeTask,
         toggleTaskCompletion,
-        editinId,
-        handleEditing
+        editingId,
+        handleEditing, 
+        cancelEditing
       )}
     </>
   );

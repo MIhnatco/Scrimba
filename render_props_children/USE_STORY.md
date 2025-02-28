@@ -72,3 +72,13 @@
         - React component: <TasksList />
         - State: task
         - Interaction: User clicks Edit icon that updates the task's input element. Next, user may click <button>Edit</button> to save the changes or <button>Cancel</button> to cancel the editing.
+
+### Cancel editing a task
+
+    As a user, I want to be able cancel editing any task so that I may continue with my initial target
+
+    Acceptance criteria:
+        - UI Element: <button>Cancel</button>
+        - React component: <TasksList />
+        - State: task
+        - Interaction: User clicsk "Cancel" button that resets the text in the input element.

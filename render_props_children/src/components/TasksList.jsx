@@ -22,7 +22,8 @@ function TasksList() {
         removeTask,
         toggleTaskCompletion,
         editingId,
-        handleEditing
+        handleEditing,
+        cancelEditing
       ) => {
         return (
           <main className="md:flex justify-around">
@@ -42,7 +43,7 @@ function TasksList() {
                 />
 
                 <button
-                  className="ml-4 py-1 px-4 border rounded-md bg-slate-700 text-white transition duration-[1s] hover:bg-slate-600 hover:text-white"
+                  className="ml-4 py-1 px-4 border rounded-md bg-slate-700 text-white hover:cursor-pointer transition duration-[1s] hover:bg-slate-600 hover:text-white"
                   aria-label={editingId ? "Save change" : "Add the task"}
                 >
                   {editingId ? "Edit" : "Add task"}
@@ -50,9 +51,10 @@ function TasksList() {
 
                 {editingId ? (
                   <button
-                    className=""
+                    className="ml-4 py-1 px-4 border rounded-md bg-red-700 hover:bg-red-600 hover:cursor-pointer text-white transition durantion-[1s]"
                     type="button"
                     aria-label="Cancel editing"
+                    onClick={cancelEditing}
                   >
                     Cancel
                   </button>
