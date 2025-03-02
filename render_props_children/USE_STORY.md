@@ -81,4 +81,14 @@
         - UI Element: <button>Cancel</button>
         - React component: <TasksList />
         - State: task
-        - Interaction: User clicsk "Cancel" button that resets the text in the input element.
+        - Interaction: User clicks "Cancel" button that resets the text in the input element.
+
+### Filter tasks
+    
+    As a user, I want to be able filter tasks so that I can see the progress of my work
+
+    Acceptance criteria:
+        - UI Element: <button>All tasks</button>
+        - React component: <TasksList />
+        - State: filteredTasks
+        - Interaction: User clicks on of the three buttons "All tasks", "Completed tasks", "Pending tasks" to differentiate the displaying tasks

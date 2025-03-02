@@ -24,11 +24,43 @@ function TasksList() {
         editingId,
         handleEditing,
         cancelEditing,
-        inputRef
+        inputRef,
+        filteredTasks,
+        handleFilterChange,
+        gotFilteredTasks
       ) => {
+        const allTasksCount = tasks.length;
+        const completedTasksCount = tasks.filter((task) => task.done).length;
+        const pendingTasksCount = tasks.filter((task) => !task.done).length;
+
         return (
           <main className="md:flex justify-around">
-            <aside className="md:w-1/4 flex flex-col items-center border-r-4 p-4"></aside>
+            <aside className="md:w-1/4 flex flex-col items-center border-r-4 p-4">
+              <button
+                className={`border py-1 px-4 mx-auto m-3 md:w-2/3 rounded-md shodow-md text-center ${
+                  filteredTasks === "all" ? "bg-slate-700 text-white" : ""
+                } transition duration-[1s] hover:bg-slate-600 hover:text-white`}
+                onClick={() => handleFilterChange("all")}
+              >
+                All tasks ({allTasksCount})
+              </button>
+              <button
+                className={`border py-1 px-4 mx-auto m-3 md:w-2/3 rounded-md shodow-md text-center ${
+                  filteredTasks === "completed" ? "bg-slate-700 text-white" : ""
+                } transition duration-[1s] hover:bg-slate-600 hover:text-white`}
+                onClick={() => handleFilterChange("completed")}
+              >
+                Completed tasks ({completedTasksCount})
+              </button>
+              <button
+                className={`border py-1 px-4 mx-auto m-3 md:w-2/3 rounded-md shodow-md text-center ${
+                  filteredTasks === "pending" ? "bg-slate-700 text-white" : ""
+                } transition duration-[1s] hover:bg-slate-600 hover:text-white`}
+                onClick={() => handleFilterChange("pending")}
+              >
+                Pending tasks ({pendingTasksCount})
+              </button>
+            </aside>
 
             <article className="flex-grow-2 md:w-3/4 p-x">
               <form
@@ -64,13 +96,13 @@ function TasksList() {
               </form>
 
               <section className="max-w-2/3 mx-auto py-8">
-                {tasks.length === 0 ? (
+                {gotFilteredTasks.length === 0 ? (
                   <p className="text-center py-8">
                     No tasks yet. Add one above!
                   </p>
                 ) : (
                   <ul className="w-4/5 mx-auto" aria-label="Task list">
-                    {tasks.map((task) => (
+                    {gotFilteredTasks.map((task) => (
                       <li
                         key={task.id}
                         className={`w-4/5 mx-auto flex justify-between px-4 py-2 my-4 border rounded md:text-xl ${

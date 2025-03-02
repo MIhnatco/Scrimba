@@ -21,6 +21,8 @@ function TasksProvider({ children }) {
 
   const inputRef = React.useRef(null);
 
+  const [filteredTasks, setFilteredTasks] = React.useState("all");
+
   /**
    * Handles changes to the task input field
    * @param {Event} event - The event object from the input field
@@ -148,6 +150,24 @@ function TasksProvider({ children }) {
     }
   }, [inputRef, editingId]);
 
+  /**
+   * Filtering tasks
+   */
+  function handleFilterChange(filterType) {
+    setFilteredTasks(filterType);
+  }
+
+  function getFilteredTasks(){
+    switch(filteredTasks){
+      case 'completed': 
+        return tasks.filter((task) => task.done);
+      case 'pending':
+        return tasks.filter((task) => !task.done);
+      default: 
+        return tasks;
+    }
+  }
+
   return (
     <>
       {children(
@@ -160,7 +180,10 @@ function TasksProvider({ children }) {
         editingId,
         handleEditing,
         cancelEditing,
-        inputRef
+        inputRef,
+        filteredTasks, 
+        handleFilterChange,
+        getFilteredTasks()
       )}
     </>
   );
