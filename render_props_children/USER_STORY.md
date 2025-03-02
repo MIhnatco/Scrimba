@@ -42,7 +42,6 @@
         - State: tasks stored in an array
         - Interaction: User types in an input element and clicks "Add task" button to update the list. It also clears the newTask input field.
 
-
 ### Removing a task
 
     As a user, I want to remove task from the list so that I can keep my list up to date.
@@ -84,7 +83,7 @@
         - Interaction: User clicks "Cancel" button that resets the text in the input element.
 
 ### Filter tasks
-    
+
     As a user, I want to be able filter tasks so that I can see the progress of my work
 
     Acceptance criteria:
