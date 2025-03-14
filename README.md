@@ -22,6 +22,12 @@ projects as a reference for your own learning.
 ### 3. Task manager - Render Props pattern
 
 - **Description:** A simple Task Manager application built with React using the Render Props pattern. This application allows users to add, edit, delete, and toggle task completion while persisting tasks in localStorage.
+- **Technologies used:** React - Render Props pattern, JS, HTML5, CSS - Tailwindcss
+
+### 4. VanLife website - React Router 7
+
+- **Description:** Web application designed for renting travel vans, perfect for road trip enthusiasts.
+- **Technologies used:** React - React Router 7, JS, HTML5, CSS - Tailwindcss
 
 ## How to use
 
