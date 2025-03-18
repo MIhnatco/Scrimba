@@ -6,19 +6,13 @@ function Vans() {
   console.log(vans);
 
   React.useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    fetch("/api/vans", { signal })
+    fetch("/api/vans")
       .then((resp) => resp.json())
       .then((data) => setVans(data.vans));
-
-    //abort API call
-    return () => controller.abort();
   }, []);
   return (
     <>
-      <h1>{vans[0].name}</h1>
+      <h1>jhg</h1>
     </>
   );
 }
