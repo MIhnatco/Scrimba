@@ -18,7 +18,7 @@ function Vans() {
   }, []);
   return (
     <>
-      <h1>Vans</h1>
+      <h1>{vans[0].name}</h1>
     </>
   );
 }
